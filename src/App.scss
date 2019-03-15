@@ -1,0 +1,121 @@
+.row {
+  position: relative;
+  height: 100vh;
+  @media (max-width: 575px) {
+    height: max-content;
+  }
+}
+@media (min-width: 768px) {
+  .col-md-6 {
+    flex-basis: 52%;
+    max-width: 47.754%;
+  }
+}
+.form-left_img {
+  height: 1.625rem; //26px;
+  width: 11.0625rem; //177px;
+  margin-bottom: 1rem;
+}
+
+.form-left_text-1 {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 2rem; //16px = 1rem 32px=2rem
+  margin: 1rem 0rem;
+  color: #fff;
+  @media (max-width: 673px) {
+    font-size: 1.5rem;
+  }
+}
+
+.form-left_text-2 {
+  font-family: Merriweather;
+  font-size: 0.875rem;
+  color: #eaeaea;
+  @media (max-width: 673px) {
+    font-size: 0.875rem;
+  }
+}
+.form-left {
+  position: absoulute;
+  height: 100%;
+  padding: 2rem 5rem;
+  background-color: #585858;
+  @media (max-width: 673px) {
+    padding: 2rem 1.5rem;
+  }
+}
+label {
+  text-transform: uppercase;
+  font-family: Merriweather;
+  font-size: 0.75rem;
+  color: #666666;
+}
+.form-display {
+  display: inline;
+}
+.form-right {
+  padding: 4.75rem 1.5rem;
+  height: 100vh;
+  @media (max-width: 673px) {
+    padding: 2rem 1.5rem;
+  }
+}
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-control {
+  max-width: 23.5rem;
+  height: 3rem;
+  padding: 1rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid #eaeaea;
+  font-family: Roboto;
+  font-size: 0.875rem;
+  background-color: #f7f7f7;
+}
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+  background-image: none;
+  background-color: #ffffff;
+}
+.form-control.is-invalid:focus,
+.was-validated .form-control:invalid:focus {
+  border-color: 1px solid #e70000;
+  box-shadow: none;
+}
+.invalid-feedback {
+  display: inline-block;
+  width: 0rem;
+  color: #e70000;
+  font-family: Merriweather;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  padding: 0.5rem;
+}
+.form-control:focus {
+  box-shadow: none;
+  border: 1px solid #00adee;
+  background-color: #ffffff !important;
+}
+.btn {
+  //pointer-events: none;
+  font-size: 1rem;
+  margin: 1.5rem 0rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-family: Roboto;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 0.375rem;
+  background-color: #ffab44;
+  @media (max-width: 767px) {
+    max-width: 23.5rem;
+    height: 3rem;
+    width: 100%;
+  }
+}
+.btn:hover {
+  color: none;
+  text-decoration: none;
+}
