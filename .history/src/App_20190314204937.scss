@@ -1,20 +1,13 @@
 .row {
-  
   position: relative;
   height: 100vh;
   @media (max-width: 575px) {
     height: max-content;
   }
-
 }
-//used to calculate the 563px
-
 @media (min-width: 768px) {
-  //
   .col-md-6 {
-    //allows you to specifiy the initial width of the element
     flex-basis: 52%;
-    
     max-width: 47.754%;
   }
 }
@@ -44,7 +37,6 @@
   }
 }
 .form-left {
-  
   position: absoulute;
   height: 100%;
   padding: 2rem 5rem;
@@ -101,7 +93,6 @@ label {
   font-size: 0.75rem;
   padding: 0.5rem;
 }
-//on focus
 .form-control:focus {
   box-shadow: none;
   border: 1px solid #00adee;
@@ -124,7 +115,6 @@ label {
     width: 100%;
   }
 }
-//on cover disable these
 .btn:hover {
   color: none;
   text-decoration: none;

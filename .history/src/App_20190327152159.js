@@ -41,19 +41,18 @@ class App extends Component { //class plain old javascript component
     this.setState({ addressOpt: event.target.value });
   };
   handlePhoneNumber = event => {  
-    // I set maxLength to 14 including ()- and space
-    //this does is replace all digits in event.target witht empty string
+    //this.setState({phoneNumber: event.target.value})
+    
+    
     let numbers = event.target.value.replace(/[^\d]/g,'');
-    //substring extracts 0-3 from the variable numbers and creates a new string
+   
+    //having isssues with the () - not deleting when user deletes phone number
     let formatted_phone= "("+numbers.substring(0,3)+") "+numbers.substring(3,6)+"-"+numbers.substring(6,11)
     
-    //I was having issues not deleting the ()- when user deletes phone number therefore I check again if input value is empty
     if (event.target.value === '') 
     return event.target.value;
 
     event.target.value=formatted_phone;
-    this.setState({phoneNumber: event.target.value});
-
         
   }
   validateFirstName = () => {

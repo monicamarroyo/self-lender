@@ -15,8 +15,7 @@ class App extends Component { //class plain old javascript component
       addressOpt: "",
       firstNameError: "",
       lastNameError: "",
-      addressError: "",
-      phoneNumber: ""
+      addressError: ""
     };
   }
 //function that handles first name change, takes in the event
@@ -40,22 +39,6 @@ class App extends Component { //class plain old javascript component
   handleAddressOptChange = event => {
     this.setState({ addressOpt: event.target.value });
   };
-  handlePhoneNumber = event => {  
-    // I set maxLength to 14 including ()- and space
-    //this does is replace all digits in event.target witht empty string
-    let numbers = event.target.value.replace(/[^\d]/g,'');
-    //substring extracts 0-3 from the variable numbers and creates a new string
-    let formatted_phone= "("+numbers.substring(0,3)+") "+numbers.substring(3,6)+"-"+numbers.substring(6,11)
-    
-    //I was having issues not deleting the ()- when user deletes phone number therefore I check again if input value is empty
-    if (event.target.value === '') 
-    return event.target.value;
-
-    event.target.value=formatted_phone;
-    this.setState({phoneNumber: event.target.value});
-
-        
-  }
   validateFirstName = () => {
     const { firstName } = this.state;
     this.setState({
@@ -187,19 +170,6 @@ class App extends Component { //class plain old javascript component
                     value={this.state.addressOpt}
                     onChange={this.handleAddressOptChange}
                   />
-                </div>
-                <div className="form-group">
-                <label>Phone number</label>
-                <input
-                name="phoneNumber"
-                maxLength="14"
-                className="form-control"
-                id="phoneNumber"
-                value={this.state.phone}
-                onKeyUp={this.handlePhoneNumber}
-                >
-                </input>
-
                 </div>
                 <button className="btn" type="submit">
                   Next

@@ -3,10 +3,15 @@ import "./App.scss";
 import robot from "./utils/GiantRobotLTD_Logo.svg";
 import arrow from "./utils/White_Arrow.svg";
 
-class App extends Component { //class plain old javascript component
-  
+//lets you split up code into resuable components User Interface,
+//we are defining a class
+//component lifecycle Render Phase-pure has no side-effects. May be paused, aborted or restarted by react
+//mounting updating unmounting
+//we render in both mounting and updating to the browser
+//in mounting we initialize the constructor
+//in updating we set new props, setstate,force-update
+class App extends Component {
   constructor(props) {
-    
     super(props);
     this.state = {
       firstName: "",
@@ -15,8 +20,7 @@ class App extends Component { //class plain old javascript component
       addressOpt: "",
       firstNameError: "",
       lastNameError: "",
-      addressError: "",
-      phoneNumber: ""
+      addressError: ""
     };
   }
 //function that handles first name change, takes in the event
@@ -27,7 +31,6 @@ class App extends Component { //class plain old javascript component
     });
   };
   handleLastNameChange = event => {
-    
     this.setState({ lastName: event.target.value }, () => {
       this.validateLastName();
     });
@@ -40,22 +43,6 @@ class App extends Component { //class plain old javascript component
   handleAddressOptChange = event => {
     this.setState({ addressOpt: event.target.value });
   };
-  handlePhoneNumber = event => {  
-    // I set maxLength to 14 including ()- and space
-    //this does is replace all digits in event.target witht empty string
-    let numbers = event.target.value.replace(/[^\d]/g,'');
-    //substring extracts 0-3 from the variable numbers and creates a new string
-    let formatted_phone= "("+numbers.substring(0,3)+") "+numbers.substring(3,6)+"-"+numbers.substring(6,11)
-    
-    //I was having issues not deleting the ()- when user deletes phone number therefore I check again if input value is empty
-    if (event.target.value === '') 
-    return event.target.value;
-
-    event.target.value=formatted_phone;
-    this.setState({phoneNumber: event.target.value});
-
-        
-  }
   validateFirstName = () => {
     const { firstName } = this.state;
     this.setState({
@@ -70,7 +57,6 @@ class App extends Component { //class plain old javascript component
     });
   };
   validateAddress = () => {
-    //destructing
     const { address } = this.state;
     this.setState({
       addressError: address.length > 2 ? null : "Required"
@@ -78,7 +64,6 @@ class App extends Component { //class plain old javascript component
   };
 
   handleSubmit = event => {
-    //if the event does not get handled then default action should take place
     event.preventDefault();
 
     const {
@@ -97,7 +82,7 @@ class App extends Component { //class plain old javascript component
     ) {
       return;
     }
-//es6 sytnax 
+
     alert(`The values submitted: \n
       first name : ${firstName} \n
       last name : ${lastName} \n
@@ -124,7 +109,6 @@ class App extends Component { //class plain old javascript component
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="firstName">First Name</label>
-                   
                   <div className="invalid-feedback form-display">
                     {this.state.firstNameError}
                   </div>
@@ -132,15 +116,12 @@ class App extends Component { //class plain old javascript component
                   <input
                     name="firstName"
                     className={`form-control ${
-                      //this.state.firstNmae is is-invalid, else display nothing
                       this.state.firstNameError ? "is-invalid" : ""
                     }`}
                     id="firstName"
                     required
                     value={this.state.firstName}
-                    //
                     onChange={this.handleFirstNameChange}
-                    //
                     onClick={this.validateFirstName}
                   />
                 </div>
@@ -187,19 +168,6 @@ class App extends Component { //class plain old javascript component
                     value={this.state.addressOpt}
                     onChange={this.handleAddressOptChange}
                   />
-                </div>
-                <div className="form-group">
-                <label>Phone number</label>
-                <input
-                name="phoneNumber"
-                maxLength="14"
-                className="form-control"
-                id="phoneNumber"
-                value={this.state.phone}
-                onKeyUp={this.handlePhoneNumber}
-                >
-                </input>
-
                 </div>
                 <button className="btn" type="submit">
                   Next

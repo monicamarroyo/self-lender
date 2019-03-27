@@ -2,11 +2,26 @@ import React, { Component } from "react";
 import "./App.scss";
 import robot from "./utils/GiantRobotLTD_Logo.svg";
 import arrow from "./utils/White_Arrow.svg";
+//px will remain 20px all throughtout sizing down
+//em is equivalent to the computer font-size of parent element therefore you can specify the font-size there
+//rem relative to html element so all element adhere to that
+//lets you split up code into resuable components User Interface,
+//we are defining a class
+//component lifecycle Render Phase-pure has no side-effects. May be paused, aborted or restarted by react
+//mounting updating unmounting
+//we render in both mounting and updating to the browser
+//in mounting we initialize the constructor
+//in updating we set new props, setstate,force-update
 
+//comit phase-can work with DOM, run slide effects, schedule updates
+//react  updates in both mounting and updating
+//componentDID mount Component DID update component will unMount
+//class(props) it can take function properties use for declration or initizilation
 class App extends Component { //class plain old javascript component
-  
+  //is called before mounted
+  //constuctors are for inizilation local state, assinging to object this.state, bidning event handlers to method or instace
   constructor(props) {
-    
+    //this.props would be undefined- subclass this.state.fistName undefined throughout the component
     super(props);
     this.state = {
       firstName: "",
@@ -15,19 +30,18 @@ class App extends Component { //class plain old javascript component
       addressOpt: "",
       firstNameError: "",
       lastNameError: "",
-      addressError: "",
-      phoneNumber: ""
+      addressError: ""
     };
   }
 //function that handles first name change, takes in the event
   handleFirstNameChange = event => {
-    
+    //this works asynchronous way, therefore immidiately invoking this.validateFirstName 
     this.setState({ firstName: event.target.value }, () => {
       this.validateFirstName();
     });
   };
   handleLastNameChange = event => {
-    
+    //setState- changes the components state and tells React that this component and it's children need to be re-rendered with the updated state used primarly with event handlers and server responses** like request
     this.setState({ lastName: event.target.value }, () => {
       this.validateLastName();
     });
@@ -40,22 +54,6 @@ class App extends Component { //class plain old javascript component
   handleAddressOptChange = event => {
     this.setState({ addressOpt: event.target.value });
   };
-  handlePhoneNumber = event => {  
-    // I set maxLength to 14 including ()- and space
-    //this does is replace all digits in event.target witht empty string
-    let numbers = event.target.value.replace(/[^\d]/g,'');
-    //substring extracts 0-3 from the variable numbers and creates a new string
-    let formatted_phone= "("+numbers.substring(0,3)+") "+numbers.substring(3,6)+"-"+numbers.substring(6,11)
-    
-    //I was having issues not deleting the ()- when user deletes phone number therefore I check again if input value is empty
-    if (event.target.value === '') 
-    return event.target.value;
-
-    event.target.value=formatted_phone;
-    this.setState({phoneNumber: event.target.value});
-
-        
-  }
   validateFirstName = () => {
     const { firstName } = this.state;
     this.setState({
@@ -105,7 +103,12 @@ class App extends Component { //class plain old javascript component
       address opt: ${addressOpt}
     `);
   };
-
+//method is only required in class component, should eximine this.props, this.state
+//returns react elements typicall JSX <div> that instruct react to render a Document Object Model node, or another user defined component
+//arrays ans fragments reutnring fragments its like having multiple elements
+//portals - modals, srtings and numbers, booleans or null
+//render has to pure, it cant modify component state it returns same result each time invoked doesn't intreract with broswer- if u do then use compoennt did mounth
+//no-gutters 
   render() {
     return (
       <div className="form">
@@ -124,7 +127,7 @@ class App extends Component { //class plain old javascript component
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="firstName">First Name</label>
-                   
+                  //invalid feedback is boostrap class that feedback dynmically, and display this error 
                   <div className="invalid-feedback form-display">
                     {this.state.firstNameError}
                   </div>
@@ -187,19 +190,6 @@ class App extends Component { //class plain old javascript component
                     value={this.state.addressOpt}
                     onChange={this.handleAddressOptChange}
                   />
-                </div>
-                <div className="form-group">
-                <label>Phone number</label>
-                <input
-                name="phoneNumber"
-                maxLength="14"
-                className="form-control"
-                id="phoneNumber"
-                value={this.state.phone}
-                onKeyUp={this.handlePhoneNumber}
-                >
-                </input>
-
                 </div>
                 <button className="btn" type="submit">
                   Next
